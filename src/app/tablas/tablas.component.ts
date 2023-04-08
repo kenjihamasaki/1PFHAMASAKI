@@ -34,7 +34,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./tablas.component.scss']
 })
 export class TablasComponent {
-  displayedColumns: string[] = ['posicion', 'nombre', 'apellido', 'fecha_registro'];
+  displayedColumns: string[] = ['posicion', 'nombreCompleto', 'fecha_registro'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
   applyFilter(event: Event) {
