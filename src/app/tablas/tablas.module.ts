@@ -5,19 +5,29 @@ import { MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from "@angular/material/input";
 import { SharedModule } from '../shared/shared.module';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { AbmAlumnosComponent } from './abm-alumnos/abm-alumnos.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
 @NgModule({
   declarations: [
-    TablasComponent
+    TablasComponent,
+    AbmAlumnosComponent
   ],
   imports: [
     CommonModule,
     MatTableModule,
     MatFormFieldModule,
     MatInputModule,
-    SharedModule
+    SharedModule,
+    MatIconModule,
+    MatButtonModule,
+    MatDialogModule,
+    ReactiveFormsModule
   ], 
   exports: [
     TablasComponent
