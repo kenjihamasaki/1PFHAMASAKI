@@ -18,11 +18,20 @@
             <mat-error *ngFor="let error of apellidoControl.errors | keyvalue">{{ error | controlErrorMessages}}</mat-error>
             </mat-form-field>
         </div>
-    </div>        
+    </div>
+    <div class="row">
+        <div class="col-1">            
+        <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input [formControl]="emailControl" type="email" matInput>
+            <mat-error *ngFor="let error of emailControl.errors | keyvalue">{{ error | controlErrorMessages}}</mat-error>
+            </mat-form-field>
+        </div>
+    </div>         
     </form>
 </div>
 
 <div mat-dialog-actions>
-    <button mat-raised-button color="primary">Cancelar</button>
+    <button mat-raised-button color="primary" mat-dialog-close>Cancelar</button>
     <button (click)="guardar()" mat-raised-button color="primary">Guardar</button>
 </div>

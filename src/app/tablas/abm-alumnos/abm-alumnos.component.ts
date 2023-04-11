@@ -11,11 +11,13 @@ export class AbmAlumnosComponent {
 
   nombreControl = new FormControl('',[Validators.required]);
   apellidoControl = new FormControl('', [Validators.required]);
-
+  emailControl = new FormControl('',[Validators.required,Validators.email])
   alumnosForm = new FormGroup({
     nombre: this.nombreControl,
     apellido: this.apellidoControl,
+    email: this.emailControl,
   })
+
 
   constructor(private dialogRef: MatDialogRef<AbmAlumnosComponent>) {}
 

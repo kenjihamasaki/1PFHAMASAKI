@@ -7,7 +7,10 @@ export interface PeriodicElement {
   posicion: number;
   nombre: string;
   apellido: string;
+  email:string;
   fecha_registro: Date;
+  eliminar: number;
+  
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
@@ -15,19 +18,25 @@ const ELEMENT_DATA: PeriodicElement[] = [
     posicion: 1,
     nombre: 'Juan',
     apellido: 'Sosa',
-    fecha_registro: new Date()
+    fecha_registro: new Date(),
+    email: "juansosa@gmail.com",
+    eliminar: 1,
   },
   {
     posicion: 2,
     nombre: 'Miriam',
     apellido: 'Paez',
-    fecha_registro: new Date()
+    fecha_registro: new Date(),
+    email: "miriampaez@gmail.com",
+    eliminar: 2,
   },
   {
     posicion: 3,
     nombre: 'Cynthia',
     apellido: 'Coronel',
-    fecha_registro: new Date()
+    fecha_registro: new Date(),
+    email: "cynthiacoronel@gmail.com",
+    eliminar: 3,
   },
 ];
 
@@ -37,7 +46,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./tablas.component.scss']
 })
 export class TablasComponent {
-  displayedColumns: string[] = ['posicion', 'nombreCompleto', 'fecha_registro'];
+  displayedColumns: string[] = ['posicion', 'nombreCompleto', 'email', 'fecha_registro', 'eliminar'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
   applyFilter(event: Event) {
@@ -58,9 +67,10 @@ export class TablasComponent {
           ...valor,
           fecha_registro: new Date(),
           posicion: this.dataSource.data.length + 1,
+          eliminar: this.dataSource.data.length + 1,
         }];
 
      } 
-    })
+    });    
   }
 }
