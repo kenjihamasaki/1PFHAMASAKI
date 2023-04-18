@@ -1,13 +1,17 @@
 <mat-drawer-container class="example-container" autosize>
   <mat-drawer #drawer class="example-sidenav" mode="side">
+    <img width="50" height="50" src="../../assets/img/avatar.svg">
+    <p>{{ authUser?.email }}</p>
     <p>Auto-resizing sidenav</p>
     <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
     <button (click)="showFiller = !showFiller" mat-raised-button>
-      Toggle extra text
+      {{ showFiller ? 'Show less' : 'Show more'}}
     </button>
   </mat-drawer>
 
   <mat-toolbar color="primary">
+    <div class="navbar">
+      <div>
       <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="drawer.toggle()">
         <mat-icon>menu</mat-icon>
       </button>
@@ -19,10 +23,14 @@
       <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
         <mat-icon>share</mat-icon>
       </button>
-  </mat-toolbar>
+    </div>
+    <p>{{ authUser?.nombre }}</p>
+  </div>
+</mat-toolbar>
 
   <main>
-    <app-tablas></app-tablas>
+    <!-- <app-tablas></app-tablas> -->
+    <app-observables></app-observables>
   </main>
 
 </mat-drawer-container>

@@ -1,0 +1,19 @@
+<div class="mb-3">
+    <button mat-raised-button color="primary" (click)="crearUsuario()">Crear usuario</button>
+  </div>
+  
+  
+  <form [formGroup]="authForm" (ngSubmit)="login()">
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input [formControl]="emailControl" placeholder="email" matInput />
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <mat-label>Nombre</mat-label>
+      <input [formControl]="nombreControl" placeholder="nombre" matInput />
+    </mat-form-field>
+  
+    <button mat-flat-button color="primary" type="submit">Ingresar</button>
+  </form>
+  

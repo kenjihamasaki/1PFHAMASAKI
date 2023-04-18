@@ -6,6 +6,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { TablasModule } from 'src/app/tablas/tablas.module';
+import { ObservablesModule } from 'src/app/observables/observables.module';
 
 
 
@@ -20,6 +21,7 @@ import { TablasModule } from 'src/app/tablas/tablas.module';
     MatButtonModule,
     MatSidenavModule,
     TablasModule,
+    ObservablesModule
   ],
   exports: [
     NavbarComponent
