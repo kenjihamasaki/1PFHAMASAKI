@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { PeriodicElement } from 'src/app/tablas/tablas.component';
+import { PeriodicElement } from 'src/app/alumno/alumno.component';
 
 @Pipe({
   name: 'nombreCompleto'

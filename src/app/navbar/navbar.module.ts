@@ -5,8 +5,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { TablasModule } from 'src/app/tablas/tablas.module';
+import { AlumnoModule } from 'src/app/alumno/alumno.module';
 import { ObservablesModule } from 'src/app/observables/observables.module';
+import { RouterModule } from '@angular/router';
+import { MatListModule } from '@angular/material/list';
+import { CursoModule } from '../curso/curso.module';
 
 
 
@@ -20,8 +23,11 @@ import { ObservablesModule } from 'src/app/observables/observables.module';
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
-    TablasModule,
-    ObservablesModule
+    AlumnoModule,
+    ObservablesModule,
+    RouterModule,
+    MatListModule, 
+    CursoModule
   ],
   exports: [
     NavbarComponent

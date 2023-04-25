@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-abm-alumnos',
@@ -19,7 +19,16 @@ export class AbmAlumnosComponent {
   })
 
 
-  constructor(private dialogRef: MatDialogRef<AbmAlumnosComponent>) {}
+  constructor(private dialogRef: MatDialogRef<AbmAlumnosComponent>,
+    @Inject(MAT_DIALOG_DATA) private data:any,
+    ) {
+      if (data) {
+        this.nombreControl.setValue(data.alumnoParaEditar.nombre);
+        this.apellidoControl.setValue(data.alumnoParaEditar.apellido);
+        this.emailControl.setValue(data.alumnoParaEditar.email);
+      } 
+      console.log(data)
+    }
 
   guardar(): void {
     if (this.alumnosForm.valid) {

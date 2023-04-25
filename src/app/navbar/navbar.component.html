@@ -1,12 +1,20 @@
 <mat-drawer-container class="example-container" autosize>
-  <mat-drawer #drawer class="example-sidenav" mode="side">
+  <mat-drawer [opened]="true" #drawer class="example-sidenav" mode="side">
     <img width="50" height="50" src="../../assets/img/avatar.svg">
     <p>{{ authUser?.email }}</p>
-    <p>Auto-resizing sidenav</p>
-    <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
-    <button (click)="showFiller = !showFiller" mat-raised-button>
-      {{ showFiller ? 'Show less' : 'Show more'}}
-    </button>
+    <mat-nav-list>
+      <a
+      [routerLink]="link.path"
+       mat-list-item       
+       *ngFor="let link of links">
+        <mat-icon>{{link.icon}}</mat-icon> {{ link.title }}
+      </a>
+      <a
+      (click)="logOut()"
+      mat-list-item>
+        Cerrar Sesion
+      </a>
+    </mat-nav-list>
   </mat-drawer>
 
   <mat-toolbar color="primary">
@@ -29,8 +37,9 @@
 </mat-toolbar>
 
   <main>
-    <!-- <app-tablas></app-tablas> -->
-    <app-observables></app-observables>
+    <router-outlet></router-outlet>
+    <!-- <app-alumno></app-alumno> -->
+    <!-- <app-observables></app-observables> -->
   </main>
 
 </mat-drawer-container>

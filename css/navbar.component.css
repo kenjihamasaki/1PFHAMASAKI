@@ -15,11 +15,10 @@
   justify-content: center;
 }
 
-.example-sidenav {
-  padding: 20px;
+.example-spacer {
+  flex: 1 1 auto;
 }
 
-.navbar {
-  display: flex;
-  justify-content: baseline;
+.example-spacer {
+  flex: 1 1 auto;
 }

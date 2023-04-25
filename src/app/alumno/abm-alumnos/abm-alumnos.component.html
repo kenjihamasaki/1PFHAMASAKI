@@ -1,6 +1,6 @@
 <h1 mat-dialog-title>ABM Alumnos</h1>
 <div mat-dialog-content class="container text-center" >
-    <form [formGroup]="alumnosForm" >
+    <form class="grid formgrid" [formGroup]="alumnosForm" >
     <div class="row">
         <div class="col-1">            
         <mat-form-field>
@@ -23,7 +23,8 @@
         <div class="col-1">            
         <mat-form-field>
             <mat-label>Email</mat-label>
-            <input [formControl]="emailControl" type="email" matInput>
+            <input [formControl]="emailControl"
+             type="email" matInput>
             <mat-error *ngFor="let error of emailControl.errors | keyvalue">{{ error | controlErrorMessages}}</mat-error>
             </mat-form-field>
         </div>
