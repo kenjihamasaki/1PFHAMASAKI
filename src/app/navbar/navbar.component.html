@@ -1,7 +1,10 @@
 <mat-drawer-container class="example-container" autosize>
   <mat-drawer [opened]="true" #drawer class="example-sidenav" mode="side">
     <img width="50" height="50" src="../../assets/img/avatar.svg">
-    <p>{{ authUser?.email }}</p>
+    
+    <p>{{ (authUser$ | async)?.nombre }}</p>
+    <p>{{ (authUser$ | async)?.email }}</p>
+
     <mat-nav-list>
       <a
       [routerLink]="link.path"
@@ -32,14 +35,12 @@
         <mat-icon>share</mat-icon>
       </button>
     </div>
-    <p>{{ authUser?.nombre }}</p>
+    <p>{{ (authUser$ | async)?.nombre }}</p>
   </div>
 </mat-toolbar>
 
   <main>
     <router-outlet></router-outlet>
-    <!-- <app-alumno></app-alumno> -->
-    <!-- <app-observables></app-observables> -->
   </main>
 
 </mat-drawer-container>

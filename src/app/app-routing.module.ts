@@ -1,52 +1,24 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NavbarComponent } from './navbar/navbar.component';
-import { AlumnoComponent } from './alumno/alumno.component';
-import { ObservablesComponent } from './observables/observables.component';
 import { AuthComponent } from './auth/auth.component';
-import { LoginComponent } from './auth/login/login.component';
-import { AlumnoDetalleComponent } from './alumno/pages/alumno-detalle/alumno-detalle.component';
-import { CursoComponent } from './curso/curso.component';
+import { AuthGuard } from './auth/guards/auth.guard';
+import { LoginGuard } from './auth/guards/login.guard';
 
 
 const routes: Routes = [
   {
     path: 'navbar',
+    canActivate: [AuthGuard],
     component: NavbarComponent,
-    children: [
-      {
-        path:'alumno',
-        children: [
-          {
-            path: '',
-            component: AlumnoComponent,
-          },
-          {
-            path:':posicion',
-            component: AlumnoDetalleComponent,
-          },
-        ]
-      },
-      {
-        path: 'curso',
-        component: CursoComponent
-      },
-      
-      {
-        path: 'observables',
-        component: ObservablesComponent,
-      }
-    ]
+    loadChildren:() => import('./navbar/navbar.module').then((m)=>m.NavbarModule)
   },
-  {
+  
+    {
     path: 'auth',
+    canActivate: [LoginGuard],
     component: AuthComponent,
-    children: [
-      {
-        path: 'login',
-        component: LoginComponent
-      }
-    ]
+    loadChildren:() => import('./auth/auth.module').then((m)=>m.AuthModule)
   },
   {
     path: '**',

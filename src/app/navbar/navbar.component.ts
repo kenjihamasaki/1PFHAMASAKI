@@ -1,7 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
-import { AuthService } from '../core/services/auth.service';
-import { Usuario } from '../core/models';
-import { Subject, Subscription, takeUntil } from 'rxjs';
+import { AuthService } from '../auth/services/auth.service';
+import { Usuario } from '../core/models/index';
+import { Subject,Observable} from 'rxjs';
 import links from './nav-items';
 import { Router } from '@angular/router';
 
@@ -13,11 +13,10 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnDestroy{
   showFiller = false;
 
-  authUser: Usuario | null = null;
+  authUser$: Observable<Usuario | null>;
 
   links = links;
 
-  suscripcionAuthUser: Subscription | null = null;
 
   destroyed$ = new Subject<void>();
 
@@ -27,20 +26,14 @@ export class NavbarComponent implements OnDestroy{
     private router: Router
     ) {
 
-    this.authService.obtenerUsuarioAutenticado()
-      .pipe(
+      this.authUser$ = this.authService.obtenerUsuarioAutenticado()
 
-        takeUntil(this.destroyed$)
-      )
-      .subscribe((usuario) => this.authUser = usuario);
-  }
 
-  ngOnDestroy(): void {
-    this.destroyed$.next();
+}ngOnDestroy(): void {
+  this.destroyed$.next();
     this.destroyed$.complete();
-  }
-
-  logOut(): void{
-    this.router.navigate(['auth', 'login'])
-  }
+}
+logOut(): void {
+  this.authService.logout();
+}
 }

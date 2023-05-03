@@ -5,11 +5,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { AlumnoModule } from 'src/app/alumno/alumno.module';
 import { ObservablesModule } from 'src/app/observables/observables.module';
 import { RouterModule } from '@angular/router';
 import { MatListModule } from '@angular/material/list';
 import { CursoModule } from '../curso/curso.module';
+import { CursoComponent } from '../curso/curso.component';
+import { ObservablesComponent } from '../observables/observables.component';
 
 
 
@@ -23,11 +24,25 @@ import { CursoModule } from '../curso/curso.module';
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
-    AlumnoModule,
     ObservablesModule,
     RouterModule,
     MatListModule, 
-    CursoModule
+    CursoModule,
+    RouterModule.forChild([
+          {
+            path:'alumno',
+            loadChildren: ()=> import('../alumno/alumno.module').then((m) => m.AlumnoModule)
+          },
+          {
+            path: 'curso',
+            component: CursoComponent
+          },
+          
+          {
+            path: 'observables',
+            component: ObservablesComponent,
+          }
+    ])
   ],
   exports: [
     NavbarComponent

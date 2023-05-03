@@ -11,6 +11,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { AbmAlumnosComponent } from './abm-alumnos/abm-alumnos.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AlumnoDetalleComponent } from './pages/alumno-detalle/alumno-detalle.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -30,6 +31,16 @@ import { AlumnoDetalleComponent } from './pages/alumno-detalle/alumno-detalle.co
     MatButtonModule,
     MatDialogModule,
     ReactiveFormsModule,
+    RouterModule.forChild([
+      {
+        path: '',
+        component: AlumnoComponent
+      },
+      {
+        path: ':id',
+        component: AlumnoDetalleComponent,
+      },
+    ])
   ], 
   exports: [
     AlumnoComponent
