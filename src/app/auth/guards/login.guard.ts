@@ -17,7 +17,7 @@ export class LoginGuard implements CanActivate {
       .pipe(
         map((usuarioAutenticado) => {
           if (usuarioAutenticado) {
-            return this.router.createUrlTree(['dashboard']);
+            return this.router.createUrlTree(['navbar']);
           } else {
             return true;
           }

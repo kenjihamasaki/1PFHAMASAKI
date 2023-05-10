@@ -16,10 +16,9 @@ const links: NavItem[] = [
         icon: 'school'
     },
     {
-        path: 'observables',
-        title: 'Observables',
-        icon: 'search',
-    },
+        path: 'usuario',
+        title: 'Usuario',
+    }
 ]
 
 export default links;

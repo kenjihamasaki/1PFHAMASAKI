@@ -1,8 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, BehaviorSubject, map, catchError, throwError } from 'rxjs';
+import { Observable, BehaviorSubject, map, catchError, throwError, of } from 'rxjs';
 import { Usuario } from '../../core/models';
+import { enviroment } from 'src/enviroments/enviroments';
+
 export interface LoginFormValue {
   email: string;
   password: string;
@@ -26,7 +28,7 @@ export class AuthService {
 
   login(formValue: LoginFormValue): void {
     this.httpClient.get<Usuario[]>(
-      `http://localhost:3000/usuarios`,
+      `${enviroment.apiBaseUrl}/usuarios`,
       {
         params: {
           ...formValue
@@ -55,7 +57,7 @@ export class AuthService {
   verificarToken(): Observable<boolean> {
     const token = localStorage.getItem('token');
     return this.httpClient.get<Usuario[]>(
-      `http://localhost:3000/usuarios?token=${token}`,
+      `${enviroment.apiBaseUrl}/usuarios?token=${token}`,
       {
         headers: new HttpHeaders({
           'Authorization': token || '',
@@ -72,8 +74,7 @@ export class AuthService {
           return !!usuarioAutenticado;
         }),
         catchError((err) => {
-          alert('Error al verificar el token');
-          return throwError(() => err);
+          return of(false);
         })
       );
   }

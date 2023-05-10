@@ -10,8 +10,9 @@ import { RouterModule } from '@angular/router';
 import { MatListModule } from '@angular/material/list';
 import { CursoModule } from '../curso/curso.module';
 import { CursoComponent } from '../curso/curso.component';
-import { ObservablesComponent } from '../observables/observables.component';
-
+import { UsuarioComponent } from '../usuario/usuario.component';
+import { AdminGuard } from '../auth/guards/admin.guard';
+import { UsuarioModule } from '../usuario/usuario.module';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { ObservablesComponent } from '../observables/observables.component';
     RouterModule,
     MatListModule, 
     CursoModule,
+    UsuarioModule,
     RouterModule.forChild([
           {
             path:'alumno',
@@ -37,10 +39,10 @@ import { ObservablesComponent } from '../observables/observables.component';
             path: 'curso',
             component: CursoComponent
           },
-          
           {
-            path: 'observables',
-            component: ObservablesComponent,
+            path: 'usuario',
+            canActivate: [AdminGuard],
+            component: UsuarioComponent
           }
     ])
   ],
