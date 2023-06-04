@@ -43,6 +43,10 @@ import { UsuarioModule } from '../usuario/usuario.module';
             path: 'usuario',
             canActivate: [AdminGuard],
             component: UsuarioComponent
+          },
+          {
+            path: 'inscripciones',
+            loadChildren: () => import('../inscripsciones/inscripsciones.module').then((m)=>m.InscripscionesModule)
           }
     ])
   ],

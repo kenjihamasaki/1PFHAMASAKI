@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import {MatTableDataSource} from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { AbmAlumnosComponent } from './abm-alumnos/abm-alumnos.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlumnoService } from './services/alumno.service';
 
 export interface PeriodicElement {
-  posicion: number;
+  id: number;
   nombre: string;
   apellido: string;
   email:string;
@@ -20,7 +20,7 @@ export interface PeriodicElement {
   styleUrls: ['./alumno.component.scss']
 })
 export class AlumnoComponent {
-  displayedColumns: string[] = ['posicion', 'nombreCompleto', 'email', 'fecha_registro', 'eliminar', 'editar', 'detalles'];
+  displayedColumns: string[] = ['id', 'nombreCompleto', 'email', 'fecha_registro', 'eliminar', 'editar', 'detalles'];
 
 
   dataSource = new MatTableDataSource<PeriodicElement>();
@@ -58,7 +58,7 @@ export class AlumnoComponent {
         {
           ...valor,
           fecha_registro: new Date(),
-          posicion: this.dataSource.data.length + 1,
+          id: this.dataSource.data.length + 1,
         }];
 
      } 
@@ -68,7 +68,7 @@ export class AlumnoComponent {
   eliminarAlumno(alumnoParaEliminar: PeriodicElement ): void{
 
     this.dataSource.data = this.dataSource.data.filter(
-      (alumnoActual) => alumnoActual.posicion !== alumnoParaEliminar.posicion,
+      (alumnoActual) => alumnoActual.id !== alumnoParaEliminar.id,
     )
   }
 
@@ -82,7 +82,7 @@ export class AlumnoComponent {
     dialog.afterClosed().subscribe((valorDelFormulario)=>{
       if (valorDelFormulario) {
         this.dataSource.data = this.dataSource.data.map(
-          (alumnoActual) => alumnoActual.posicion === alumnoParaEditar.posicion
+          (alumnoActual) => alumnoActual.id === alumnoParaEditar.id
           ?({ ...alumnoActual, ...valorDelFormulario})
           : alumnoActual,
         )

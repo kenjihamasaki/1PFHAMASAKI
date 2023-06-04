@@ -1,43 +1,111 @@
 {
-    "usuarios": [
-      {
-        "id": 1,
-        "nombre": "Josué",
-        "apellido": "Baez",
-        "email": "josue@mail.com",
-        "password": "123456",
-        "token": "hjsdfJHFDSAFMsaDsan12sdanjjadashj3FDBEWH",
-        "role": "admin"
-      },
-      {
-        "nombre": "Facundo",
-        "apellido": "Perez",
-        "email": "juan@email.com",
-        "password": "123456",
-        "token": "nmdsgfjhuMDKSAFJASDK327SJDKANjsadnsah",
-        "role": "user",
-        "id": 4
-      }
-    ],
-    "cursos": [
-      {
-        "id": 1,
-        "nombre": "Angular",
-        "fecha_fin": "2023-04-27T01:27:59.631Z",
-        "fecha_inicio": "2023-04-27T01:27:59.631Z"
-      },
-      {
-        "id": 2,
-        "nombre": "Javascript",
-        "fecha_fin": "2023-04-27T01:27:59.631Z",
-        "fecha_inicio": "2023-04-27T01:27:59.631Z"
-      },
-      {
-        "id": 3,
-        "nombre": "Desarrollo Web",
-        "fecha_fin": "2023-04-27T01:27:59.631Z",
-        "fecha_inicio": "2023-04-27T01:27:59.631Z"
-      }
-    ]
-  }
-  
+  "usuarios": [
+    {
+      "id": 1,
+      "nombre": "Josué",
+      "apellido": "Baez",
+      "email": "josue@mail.com",
+      "password": "123456",
+      "token": "hjsdfJHFDSAFMsaDsan12sdanjjadashj3FDBEWH",
+      "role": "admin"
+    },
+    {
+      "nombre": "Facundo",
+      "apellido": "Perez",
+      "email": "juan@email.com",
+      "password": "123456",
+      "token": "nmdsgfjhuMDKSAFJASDK327SJDKANjsadnsah",
+      "role": "user",
+      "id": 4
+    }
+  ],
+  "courses": [
+    {
+      "id": 1,
+      "subjectId": 1,
+      "fecha_fin": "2023-04-27T01:27:59.631Z",
+      "fecha_inicio": "2023-04-27T01:27:59.631Z"
+    },
+    {
+      "id": 2,
+      "subjectId": 2,
+      "fecha_fin": "2023-04-27T01:27:59.631Z",
+      "fecha_inicio": "2023-04-27T01:27:59.631Z"
+    },
+    {
+      "id": 3,
+      "subjectId": 3,
+      "fecha_fin": "2023-04-27T01:27:59.631Z",
+      "fecha_inicio": "2023-04-27T01:27:59.631Z"
+    }
+  ],
+  "subjects": [
+    {
+      "id": 1,
+      "nombre": "Angular",
+      "description": "Curso de Angular con duración de 2 meses."
+    },
+    {
+      "id": 2,
+      "nombre": "Desarrollo Web",
+      "description": "Curso de Desarrollo Web con duración de 2 meses."
+    },
+    {
+      "id": 3,
+      "nombre": "Desarrollo Javascript",
+      "description": "Curso de Javascript con duración de 2 meses."
+    }
+  ],
+  "inscriptions": [
+    {
+      "id": 1,
+      "subjectId": 2,
+      "studentId": 2,
+      "courseId": 2
+    },
+    {
+      "subjectId": 1,
+      "studentId": 4,
+      "courseId": 1,
+      "id": 2
+    },
+    {
+      "subjectId": 1,
+      "studentId": 3,
+      "courseId": 1,
+      "id": 3
+    },
+    {
+      "subjectId": 2,
+      "studentId": 1,
+      "courseId": 2,
+      "id": 4
+    }
+  ],
+  "students": [
+    {
+      "id": 1,
+      "nombre": "Alan",
+      "apellido": "Diaz",
+      "fecha_registro": "2023-04-27T01:27:59.631Z"
+    },
+    {
+      "id": 2,
+      "nombre": "Sebastian",
+      "apellido": "Vega",
+      "fecha_registro": "2023-04-27T01:27:59.631Z"
+    },
+    {
+      "id": 3,
+      "nombre": "Sebastian",
+      "apellido": "Alberti",
+      "fecha_registro": "2023-04-27T01:27:59.631Z"
+    },
+    {
+      "id": 4,
+      "nombre": "Emiliano",
+      "apellido": "Perrini",
+      "fecha_registro": "2023-04-27T01:27:59.631Z"
+    }
+  ]
+}

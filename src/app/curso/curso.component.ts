@@ -38,15 +38,41 @@ export class CursoComponent implements OnInit {
   }
 
   crearCurso(): void {
-    this.dialog.open(AbmCursosComponent);
+    const dialog = this.dialog.open(AbmCursosComponent);
+    dialog.afterClosed()
+      .subscribe((formValue) => {
+        if (formValue) {
+          this.cursosService.crearCurso(formValue)
+        }
+      });
+  }
+
+  editarCurso(curso: Curso): void {
+    const dialog = this.dialog.open(AbmCursosComponent, {
+      data: {
+        curso,
+      }
+    })
+
+    dialog.afterClosed()
+      .subscribe((formValue) => {
+        if (formValue) {
+          this.cursosService.editarCurso(curso.id, formValue);
+        }
+      })
+  }
+
+  eliminarCurso(curso: Curso): void {
+    if (confirm('Está seguro?')) {
+      this.cursosService.eliminarCurso(curso.id);
+    }
   }
 
   aplicarFiltros(ev: Event): void {}
 
   irAlDetalle(cursoId: number): void {}
 
-  eliminarCurso(curso: Curso): void {}
-
-  editarCurso(curso: Curso): void {}
-
 }
+
+
+

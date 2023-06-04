@@ -10,7 +10,7 @@ import { PipesModule } from 'src/app/shared/pipes/pipes.module';
 import { MatInputModule } from '@angular/material/input';
 import { AbmCursosComponent } from './abm-cursos/abm-cursos.component';
 import { MatDialogModule } from '@angular/material/dialog';
-
+import { MatCardModule } from '@angular/material/card';
 
 
 @NgModule({
@@ -27,7 +27,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatInputModule,
     MatTableModule,
     MatButtonModule,
-    MatDialogModule
+    MatDialogModule,
+    MatCardModule
   ]
 })
 export class CursoModule { }

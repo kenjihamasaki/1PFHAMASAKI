@@ -1,0 +1,28 @@
+<h1> Administracion de Inscripcion </h1>
+
+<a *ngIf="(state$ | async)?.loading; else ifNotLoading">
+    <mat-spinner></mat-spinner>
+</a>
+
+ <ng-template #ifNotLoading>
+
+<button (click)="crearInscripcion()" type="button" mat-button >Crear inscripcion</button>
+
+  <article>
+<mat-card *ngFor="let inscripcion of (state$ | async)?.inscripciones">
+  <mat-card-header >
+    <mat-card-title >
+    {{inscripcion.id}}- Nombre: {{inscripcion.student.nombre}} {{inscripcion.student.apellido}}
+  </mat-card-title>
+    <mat-card-subtitle >
+      Curso: {{inscripcion.subject.nombre}}
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-actions>
+    <button (click)="eliminarInscripcionPorId(inscripcion.id)" mat-icon-button color="warn" type="button">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>
+</article>
+</ng-template> 

@@ -9,14 +9,10 @@
       <a
       [routerLink]="link.path"
        mat-list-item       
-       *ngFor="let link of links">
-        <mat-icon>{{link.icon}}</mat-icon> {{ link.title }}
+       *ngFor="let link of links" class="titulo">
+        <mat-icon >{{link.icon}}</mat-icon> {{ link.title }}
       </a>
-      <a
-      (click)="logOut()"
-      mat-list-item>
-        Cerrar Sesion
-      </a>
+      <button mat-raised-button mat-dialog-close (click)="logOut()" color="primary">Cerrar Sesion</button>
     </mat-nav-list>
   </mat-drawer>
 
@@ -35,7 +31,6 @@
         <mat-icon>share</mat-icon>
       </button>
     </div>
-    <p>{{ (authUser$ | async)?.nombre }}</p>
   </div>
 </mat-toolbar>
 
