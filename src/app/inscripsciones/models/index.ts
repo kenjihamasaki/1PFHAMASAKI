@@ -1,5 +1,4 @@
-import { Subject } from "../../subjects/models";
-import { PeriodicElement } from "../../alumno/alumno.component";
+import { Materia } from "../../subjects/models";
 import { Curso } from "../../curso/models";
 import { Alumno } from "src/app/alumno/models";
 
@@ -11,11 +10,11 @@ export interface Inscripcion {
 }
 
 export interface InscripcionWithStudent extends Inscripcion{
-    student: PeriodicElement;
+    student: Alumno;
 }
 
 export interface InscripcionWithSubject extends Inscripcion {
-    subject: Subject;
+    subject: Materia;
 }
 
 export interface InscripcionWithCurso extends Inscripcion {

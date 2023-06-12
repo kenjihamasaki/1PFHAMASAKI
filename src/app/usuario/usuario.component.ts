@@ -4,6 +4,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { UsuarioService } from './service/usuario.service';
 import { AbnUsuarioComponent } from './abn-usuario/abn-usuario.component';
 import { Usuario } from '../core/models';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { selectUsuarioState } from './store/usuario.selectors';
+import { UsuarioActions } from './store/usuario.actions';
+import { State } from './store/usuario.reducer';
 
 @Component({
   selector: 'app-usuario',
@@ -12,42 +17,27 @@ import { Usuario } from '../core/models';
 })
 
 export class UsuarioComponent implements OnInit {
+  user$: Observable<State>;
 
-  dataSource = new MatTableDataSource();
-
-  displayedColumns = [
-    'id',
-    'nombre',
-    'apellido',
-    'email',
-    'detalle',
-    'editar',
-    'eliminar',
-  ];
 
   constructor(
     private usuarioService: UsuarioService,
-    private dialog: MatDialog
-  ) {}
+    private dialog: MatDialog,
+    private store: Store
+  ) {
+    this.user$ = this.store.select(selectUsuarioState)
+  }
 
   ngOnInit(): void {
-    this.usuarioService.obtenerUsuario().subscribe({
-      next: (usuarios) => {
-        this.dataSource.data = usuarios;
-      },
-    });
+    this.store.dispatch(UsuarioActions.loadUsuarios())
+  }
+
+  eliminarUsuarioPorId(id: number): void {
+    this.store.dispatch(UsuarioActions.deleteUsuarios({ id }));
   }
 
   crearUsuario(): void {
     this.dialog.open(AbnUsuarioComponent);
   }
-
-  aplicarFiltros(ev: Event): void {}
-
-  irAlDetalle(cursoId: number): void {}
-
-  eliminarUsuario(curso: Usuario): void {}
-
-  editarUsuario(curso: Usuario): void {}
 
 }

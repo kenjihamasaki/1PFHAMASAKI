@@ -1,13 +1,20 @@
-import { Component, Inject } from '@angular/core';
+import { DialogRef } from '@angular/cdk/dialog';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { AlumnoService } from '../services/alumno.service';
+import { Subject } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { AlumnoActions } from '../store/alumno.actions';
+import { Alumno, CreateAlumno } from '../models/index';
 
 @Component({
   selector: 'app-abm-alumnos',
   templateUrl: './abm-alumnos.component.html',
   styleUrls: ['./abm-alumnos.component.scss']
 })
-export class AbmAlumnosComponent {
+export class AbmAlumnosComponent implements OnInit, OnDestroy {
+  alumnos: Alumno[] = [];
 
   nombreControl = new FormControl('',[Validators.required]);
   apellidoControl = new FormControl('', [Validators.required]);
@@ -18,23 +25,33 @@ export class AbmAlumnosComponent {
     email: this.emailControl,
   })
 
+  destroyed$ = new Subject<void>();
 
-  constructor(private dialogRef: MatDialogRef<AbmAlumnosComponent>,
-    @Inject(MAT_DIALOG_DATA) private data:any,
-    ) {
-      if (data) {
-        this.nombreControl.setValue(data.alumnoParaEditar.nombre);
-        this.apellidoControl.setValue(data.alumnoParaEditar.apellido);
-        this.emailControl.setValue(data.alumnoParaEditar.email);
-      } 
-      console.log(data)
-    }
+  constructor(
+    private dialogRef: DialogRef<AbmAlumnosComponent>,
+    private alumnoService: AlumnoService,
+    private store: Store
+    ) {}
 
-  guardar(): void {
-    if (this.alumnosForm.valid) {
-      this.dialogRef.close(this.alumnosForm.value)
-    } else {
-      this.alumnosForm.markAllAsTouched();
-    }
+  ngOnDestroy(): void {
+   this.destroyed$.next();
+   this.destroyed$.complete(); 
+  }
+
+  ngOnInit(): void {
+    this.alumnoService.getStudentsFromDB().subscribe({
+      next: (res) =>{
+        this.alumnos = res;
+      }
+    })
+  }
+
+  onSave(): void {
+    this.store.dispatch(
+      AlumnoActions.createAlumnos({
+        data: this.alumnosForm.value as CreateAlumno
+      })
+    );
+    this.dialogRef.close()
   }
 }

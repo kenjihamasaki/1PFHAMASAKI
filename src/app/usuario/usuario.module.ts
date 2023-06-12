@@ -10,6 +10,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PipesModule } from '../shared/pipes/pipes.module';
 import { AbnUsuarioComponent } from './abn-usuario/abn-usuario.component';
 import { MatIconModule } from '@angular/material/icon';
+import { EffectsModule } from '@ngrx/effects';
+import { UsuarioEffects } from './store/usuario.effects';
+import { UsuarioRoutingModule } from './usuario-routing.module';
+import { StoreModule } from '@ngrx/store';
+import { usuarioFeature } from './store/usuario.reducer';
+import { MatCardModule } from '@angular/material/card';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
 
 
 
@@ -27,7 +36,14 @@ import { MatIconModule } from '@angular/material/icon';
     MatTableModule,
     MatButtonModule,
     MatDialogModule,
-    MatIconModule
+    MatIconModule,
+    UsuarioRoutingModule,
+    MatCardModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSelectModule,
+    StoreModule.forFeature(usuarioFeature),
+    EffectsModule.forFeature([UsuarioEffects])
   ],
 })
 export class UsuarioModule { }

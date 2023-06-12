@@ -37,12 +37,12 @@ import { UsuarioModule } from '../usuario/usuario.module';
           },
           {
             path: 'curso',
-            component: CursoComponent
+            loadChildren: ()=> import('../curso/curso.module').then((m)=> m.CursoModule)
           },
           {
             path: 'usuario',
             canActivate: [AdminGuard],
-            component: UsuarioComponent
+            loadChildren: ()=> import('../usuario/usuario.module').then((m)=> m.UsuarioModule)
           },
           {
             path: 'inscripciones',

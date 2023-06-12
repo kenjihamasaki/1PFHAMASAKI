@@ -1,4 +1,4 @@
-import { Subject } from '../../subjects/models';
+import { Materia } from '../../subjects/models';
 
 export interface Curso {
     id: number;
@@ -8,7 +8,12 @@ export interface Curso {
   }
 
   export interface CursoWithSubject extends Curso {
-    subject: Subject;
+    subject: Materia;
+  }
+
+  export interface CreateCursoData{
+    subjectId: number;
+    courseId: number;
   }
   
   export interface CrearCursoPayload {
@@ -16,4 +21,6 @@ export interface Curso {
     fecha_inicio: Date;
     fecha_fin: Date;
   }
+
+  export type CursoWithAll = CursoWithSubject
   

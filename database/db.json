@@ -10,33 +10,68 @@
       "role": "admin"
     },
     {
+      "id": 2,
       "nombre": "Facundo",
       "apellido": "Perez",
       "email": "juan@email.com",
       "password": "123456",
       "token": "nmdsgfjhuMDKSAFJASDK327SJDKANjsadnsah",
-      "role": "user",
-      "id": 4
+      "role": "user"
+    },
+    {
+      "nombre": "Kenji",
+      "apellido": "Hamasaki",
+      "email": "kenjih@mail.com",
+      "password": "1234567",
+      "token": "jkfhdjkhajfhslknfmnvlkdjsfahfogidsujopfjoaijhfdisuahduosfa",
+      "role": "admin",
+      "id": 3
     }
   ],
   "courses": [
     {
       "id": 1,
       "subjectId": 1,
-      "fecha_fin": "2023-04-27T01:27:59.631Z",
-      "fecha_inicio": "2023-04-27T01:27:59.631Z"
+      "fecha_fin": "2023-04-27",
+      "fecha_inicio": "2023-04-27"
     },
     {
       "id": 2,
       "subjectId": 2,
-      "fecha_fin": "2023-04-27T01:27:59.631Z",
-      "fecha_inicio": "2023-04-27T01:27:59.631Z"
+      "fecha_fin": "2023-04-27",
+      "fecha_inicio": "2023-04-27"
     },
     {
       "id": 3,
       "subjectId": 3,
-      "fecha_fin": "2023-04-27T01:27:59.631Z",
-      "fecha_inicio": "2023-04-27T01:27:59.631Z"
+      "fecha_fin": "2023-04-27",
+      "fecha_inicio": "2023-04-27"
+    },
+    {
+      "id": 4,
+      "subjectId": 4,
+      "fecha_fin": "2023-04-27",
+      "fecha_inicio": "2023-04-27"
+    },
+    {
+      "id": 5,
+      "subjectId": 5,
+      "fecha_fin": "2023-04-27",
+      "fecha_inicio": "2023-04-27"
+    },
+    {
+      "fecha_inicio": "2023-06-14T03:00:00.000Z",
+      "fecha_fin": "2023-06-14T03:00:00.000Z",
+      "subjectId": 4,
+      "courseId": 4,
+      "id": 6
+    },
+    {
+      "fecha_inicio": "2023-06-24T03:00:00.000Z",
+      "fecha_fin": "2023-06-24T03:00:00.000Z",
+      "subjectId": 3,
+      "courseId": 3,
+      "id": 7
     }
   ],
   "subjects": [
@@ -54,6 +89,16 @@
       "id": 3,
       "nombre": "Desarrollo Javascript",
       "description": "Curso de Javascript con duración de 2 meses."
+    },
+    {
+      "id": 4,
+      "nombre": "React",
+      "description": "Curso de React con duración de 2 meses."
+    },
+    {
+      "id": 5,
+      "nombre": "FullStack",
+      "description": "Curso de FullStack con duración de 2 meses."
     }
   ],
   "inscriptions": [
@@ -70,16 +115,28 @@
       "id": 2
     },
     {
-      "subjectId": 1,
+      "subjectId": 3,
       "studentId": 3,
-      "courseId": 1,
+      "courseId": 3,
       "id": 3
     },
     {
       "subjectId": 2,
-      "studentId": 1,
+      "studentId": 2,
       "courseId": 2,
-      "id": 4
+      "id": 5
+    },
+    {
+      "subjectId": 3,
+      "studentId": 4,
+      "courseId": 3,
+      "id": 6
+    },
+    {
+      "subjectId": 5,
+      "studentId": 5,
+      "courseId": 5,
+      "id": 7
     }
   ],
   "students": [
@@ -87,25 +144,31 @@
       "id": 1,
       "nombre": "Alan",
       "apellido": "Diaz",
-      "fecha_registro": "2023-04-27T01:27:59.631Z"
+      "email": "alandiaz@mail.com"
     },
     {
       "id": 2,
       "nombre": "Sebastian",
       "apellido": "Vega",
-      "fecha_registro": "2023-04-27T01:27:59.631Z"
+      "email": "sebastianvega@mail.com"
     },
     {
       "id": 3,
       "nombre": "Sebastian",
       "apellido": "Alberti",
-      "fecha_registro": "2023-04-27T01:27:59.631Z"
+      "email": "sebalberti@mail.com"
     },
     {
       "id": 4,
       "nombre": "Emiliano",
       "apellido": "Perrini",
-      "fecha_registro": "2023-04-27T01:27:59.631Z"
+      "email": "emiperri@mail.com"
+    },
+    {
+      "nombre": "Kenji",
+      "apellido": "Hamasaki",
+      "email": "kenjih@mail.com",
+      "id": 5
     }
   ]
 }

@@ -11,6 +11,14 @@ import { MatInputModule } from '@angular/material/input';
 import { AbmCursosComponent } from './abm-cursos/abm-cursos.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
+import { CursoRoutingModule } from './curso-routing.module';
+import { EffectsModule } from '@ngrx/effects';
+import { CursoEffects } from './store/curso.effects';
+import { cursoFeature } from './store/curso.reducer';
+import { StoreModule } from '@ngrx/store';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -28,7 +36,13 @@ import { MatCardModule } from '@angular/material/card';
     MatTableModule,
     MatButtonModule,
     MatDialogModule,
-    MatCardModule
+    MatCardModule,
+    CursoRoutingModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSelectModule,
+    StoreModule.forFeature(cursoFeature),
+    EffectsModule.forFeature([CursoEffects])
   ]
 })
 export class CursoModule { }

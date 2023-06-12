@@ -4,7 +4,6 @@ import { Subject, takeUntil } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { DialogRef } from '@angular/cdk/dialog';
 import { Curso, CursoWithSubject } from '../../curso/models';
-import { PeriodicElement } from '../../alumno/alumno.component';
 import { AlumnoService } from '../../alumno/services/alumno.service';
 import { ServiceService } from '../../curso/service/service.service';
 import { InscripscionesActions } from '../store/inscripsciones.actions';
@@ -17,7 +16,7 @@ import { Alumno } from 'src/app/alumno/models';
   styleUrls: ['./inscripcion-dialog.component.scss'],
 })
 export class InscripcionDialogComponent implements OnInit, OnDestroy {
-  alumnos: PeriodicElement[] = [];
+  alumnos: Alumno[] = [];
   cursos: CursoWithSubject[] = [];
 
   selectedCourseControl = new FormControl<Curso | null>(null);

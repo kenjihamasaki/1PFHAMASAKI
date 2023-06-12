@@ -6,7 +6,10 @@
 
  <ng-template #ifNotLoading>
 
-<button (click)="crearInscripcion()" type="button" mat-button >Crear inscripcion</button>
+<button (click)="crearInscripcion()" type="button" color="primary" mat-flat-button >
+  <mat-icon>add</mat-icon>
+  Crear inscripcion
+</button>
 
   <article>
 <mat-card *ngFor="let inscripcion of (state$ | async)?.inscripciones">
@@ -16,6 +19,9 @@
   </mat-card-title>
     <mat-card-subtitle >
       Curso: {{inscripcion.subject.nombre}}
+    </mat-card-subtitle>
+    <mat-card-subtitle >
+      Fecha : {{inscripcion.course.fecha_inicio}} - {{inscripcion.course.fecha_fin}}
     </mat-card-subtitle>
   </mat-card-header>
   <mat-card-actions>

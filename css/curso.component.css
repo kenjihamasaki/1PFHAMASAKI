@@ -11,3 +11,26 @@ div {
 h1 {
   margin: 20px;
 }
+
+article {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+mat-card {
+  display: flex;
+  width: 300px;
+  margin: 10px;
+}
+
+mat-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 90%;
+}
+
+.eliminar {
+  width: 100%;
+}

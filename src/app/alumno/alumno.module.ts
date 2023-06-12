@@ -10,8 +10,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AbmAlumnosComponent } from './abm-alumnos/abm-alumnos.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AlumnoDetalleComponent } from './pages/alumno-detalle/alumno-detalle.component';
-import { RouterModule } from '@angular/router';
+import { EffectsModule } from '@ngrx/effects';
+import { AlumnoEffects } from './store/alumno.effects';
+import { MatCardModule } from '@angular/material/card';
+import { StoreModule } from '@ngrx/store';
+import { alumnoFeature } from './store/alumno.reducer';
+import { AlumnoRoutingModule } from './alumno-routing.module';
 
 
 
@@ -19,7 +23,6 @@ import { RouterModule } from '@angular/router';
   declarations: [
     AlumnoComponent,
     AbmAlumnosComponent,
-    AlumnoDetalleComponent
   ],
   imports: [
     CommonModule,
@@ -31,16 +34,11 @@ import { RouterModule } from '@angular/router';
     MatButtonModule,
     MatDialogModule,
     ReactiveFormsModule,
-    RouterModule.forChild([
-      {
-        path: '',
-        component: AlumnoComponent
-      },
-      {
-        path: ':id',
-        component: AlumnoDetalleComponent,
-      },
-    ])
+    AlumnoRoutingModule,
+    MatCardModule,
+    StoreModule.forFeature(alumnoFeature),
+    EffectsModule.forFeature([AlumnoEffects]),
+    
   ], 
   exports: [
     AlumnoComponent

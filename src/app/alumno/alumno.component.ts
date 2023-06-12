@@ -1,92 +1,43 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { AbmAlumnosComponent } from './abm-alumnos/abm-alumnos.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlumnoService } from './services/alumno.service';
+import { State } from './store/alumno.reducer';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { selectAlumnoState } from './store/alumno.selectors';
+import { AlumnoActions } from './store/alumno.actions';
 
-export interface PeriodicElement {
-  id: number;
-  nombre: string;
-  apellido: string;
-  email:string;
-  fecha_registro: Date;
-  
-}
 
 @Component({
   selector: 'app-alumno',
   templateUrl: './alumno.component.html',
   styleUrls: ['./alumno.component.scss']
 })
-export class AlumnoComponent {
-  displayedColumns: string[] = ['id', 'nombreCompleto', 'email', 'fecha_registro', 'eliminar', 'editar', 'detalles'];
+export class AlumnoComponent implements OnInit {
+  alumno$: Observable<State>;
 
-
-  dataSource = new MatTableDataSource<PeriodicElement>();
-
-  applyFilter(event: Event): void {
-    const filterValue = (event.target as HTMLInputElement)?.value;
-    this.dataSource.filter = filterValue?.trim()?.toLowerCase();
-  }
 
   constructor(
-    private matDialog: MatDialog, 
-    private router: Router,
-    private activatedRoute: ActivatedRoute,
-    private alumnoService: AlumnoService,
-    ){
-      this.alumnoService.obtenerAlumno()
-        .subscribe((alumnos)=>{
-          this.dataSource.data = alumnos;
-        })
-      
-    }
-
-  irAlDetalle(alumnoPosicion: number): void{
-    this.router.navigate([alumnoPosicion],{
-      relativeTo: this.activatedRoute,
-    })
+    private matDialog: MatDialog,
+    private store: Store
+  ){
+    this.alumno$ = this.store.select(selectAlumnoState)
   }
-  abrirABMAlumnos(): void{
-    const dialog = this.matDialog.open(AbmAlumnosComponent)
-
-    dialog.afterClosed().subscribe((valor)=> {
-     if (valor) {
-      this.dataSource.data = [
-        ...this.dataSource.data, 
-        {
-          ...valor,
-          fecha_registro: new Date(),
-          id: this.dataSource.data.length + 1,
-        }];
-
-     } 
-    });    
+  ngOnInit(): void {
+    this.store.dispatch(AlumnoActions.loadAlumnos())
   }
 
-  eliminarAlumno(alumnoParaEliminar: PeriodicElement ): void{
-
-    this.dataSource.data = this.dataSource.data.filter(
-      (alumnoActual) => alumnoActual.id !== alumnoParaEliminar.id,
-    )
+  eliminarAlumno(id: number): void {
+    this.store.dispatch(AlumnoActions.deleteAlumnos({id}))
   }
 
-  editarAlumno(alumnoParaEditar: PeriodicElement): void {
-    const dialog = this.matDialog.open(AbmAlumnosComponent, {
-      data: {
-        alumnoParaEditar
-      }
-    })
+  crearAlumnos(): void {
+    this.matDialog.open(AbmAlumnosComponent)
+  }
+
   
-    dialog.afterClosed().subscribe((valorDelFormulario)=>{
-      if (valorDelFormulario) {
-        this.dataSource.data = this.dataSource.data.map(
-          (alumnoActual) => alumnoActual.id === alumnoParaEditar.id
-          ?({ ...alumnoActual, ...valorDelFormulario})
-          : alumnoActual,
-        )
-      }
-    })
-  }
+
 }

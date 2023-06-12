@@ -1,12 +1,13 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { PeriodicElement } from 'src/app/alumno/alumno.component';
+import { Alumno } from 'src/app/alumno/models';
+
 
 @Pipe({
   name: 'nombreCompleto'
 })
 export class NombreCompletoPipe implements PipeTransform {
 
-  transform(value: PeriodicElement, ...args: unknown[]): unknown {
+  transform(value: Alumno, ...args: unknown[]): unknown {
     return `${value.nombre} ${value.apellido}`;
   }
 

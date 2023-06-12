@@ -1,23 +1,20 @@
-import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { NgModule, Component } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 import { AlumnoComponent } from './alumno.component';
-import { AlumnoDetalleComponent } from './pages/alumno-detalle/alumno-detalle.component';
+import { CommonModule } from '@angular/common';
 
-
+const routes: Routes = [
+  {
+    path: '',
+    component: AlumnoComponent
+  }
+]
 
 @NgModule({
   declarations: [],
   imports: [
-    RouterModule.forChild([
-      {
-        path:'',
-        component: AlumnoComponent
-      },
-      {
-        path: ':id',
-        component: AlumnoDetalleComponent,
-      }
-    ])
+    CommonModule,
+    RouterModule.forChild(routes)
   ],
   exports: [
     RouterModule

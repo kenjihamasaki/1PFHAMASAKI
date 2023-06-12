@@ -4,6 +4,11 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Curso } from './models';
 import { MatDialog } from '@angular/material/dialog';
 import { AbmCursosComponent } from './abm-cursos/abm-cursos.component';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { State } from './store/curso.reducer';
+import { selectCursoState } from './store/curso.selectors';
+import { CursoActions } from './store/curso.actions';
 
 @Component({
   selector: 'app-curso',
@@ -11,66 +16,32 @@ import { AbmCursosComponent } from './abm-cursos/abm-cursos.component';
   styleUrls: ['./curso.component.scss']
 })
 export class CursoComponent implements OnInit {
-
-  dataSource = new MatTableDataSource();
-
-  displayedColumns = [
-    'id',
-    'nombre',
-    'fecha_inicio',
-    'fecha_fin',
-    'detalle',
-    'editar',
-    'eliminar',
-  ];
+  curso$: Observable<State>
 
   constructor(
     private cursosService: ServiceService,
-    private dialog: MatDialog
-  ) {}
+    private dialog: MatDialog,
+    private store: Store
+  ) {
+    this.curso$ = this.store.select(selectCursoState)
+  }
 
   ngOnInit(): void {
-    this.cursosService.obtenerCursos().subscribe({
-      next: (cursos) => {
-        this.dataSource.data = cursos;
-      },
-    });
+    this.store.dispatch(CursoActions.loadCursos())
   }
-
+  
   crearCurso(): void {
-    const dialog = this.dialog.open(AbmCursosComponent);
-    dialog.afterClosed()
-      .subscribe((formValue) => {
-        if (formValue) {
-          this.cursosService.crearCurso(formValue)
-        }
-      });
+    this.dialog.open(AbmCursosComponent);
   }
 
-  editarCurso(curso: Curso): void {
-    const dialog = this.dialog.open(AbmCursosComponent, {
-      data: {
-        curso,
-      }
-    })
 
-    dialog.afterClosed()
-      .subscribe((formValue) => {
-        if (formValue) {
-          this.cursosService.editarCurso(curso.id, formValue);
-        }
-      })
-  }
 
-  eliminarCurso(curso: Curso): void {
+  eliminarCurso(id: number): void {
     if (confirm('Está seguro?')) {
-      this.cursosService.eliminarCurso(curso.id);
+      this.store.dispatch(CursoActions.deleteCursos({id}));
     }
   }
 
-  aplicarFiltros(ev: Event): void {}
-
-  irAlDetalle(cursoId: number): void {}
 
 }
 

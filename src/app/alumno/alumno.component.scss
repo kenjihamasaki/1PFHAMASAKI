@@ -1,18 +1,22 @@
-table {
-    width: 100%;
-  }
-  
-  .mat-mdc-form-field {
-    font-size: 14px;
-    width: 98%;
-    margin-left: 10px;
-  }
+article {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 
-  h1{
-    margin: 20px;
-  }
-
-  div{
-    margin: 10px;
-  }
+mat-card{
+  display: grid;
+  grid-template-areas: "info boton";
+  width: 90%;
+  margin: 10px;
+}
+mat-card-header{
+  grid-area: info;
+  padding-bottom: 10px;
+}
+mat-card-actions{
+  grid-area: boton;
+  display: flex;
+  justify-content: end;
+}
 
